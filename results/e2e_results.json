@@ -1,0 +1,802 @@
+{
+  "summary": {
+    "config": {
+      "data": "data/menus.jsonl",
+      "dataset": "data/eval_dataset.jsonl",
+      "split": "test",
+      "variant": "clean",
+      "n": 20,
+      "k": 5,
+      "embedder": "tfidf-char",
+      "strategy": "structured",
+      "chunk_size": 1024,
+      "no_header": false,
+      "hybrid": true,
+      "entity": true,
+      "reranker": "none",
+      "workers": 4,
+      "out": "results/e2e_results.json"
+    },
+    "n": 20,
+    "n_answerable": 18,
+    "n_unanswerable": 2,
+    "correctness_answerable": 1.0,
+    "correctness_ci95": [
+      1.0,
+      1.0
+    ],
+    "correctness_by_type": {
+      "dietary": 1.0,
+      "discovery": 1.0,
+      "ingredients": 1.0,
+      "price": 1.0,
+      "unanswerable": 1.0
+    },
+    "faithfulness_mean": 1.0,
+    "faithfulness_ci95": [
+      1.0,
+      1.0
+    ],
+    "false_abstention_rate": 0.0,
+    "failure_breakdown": {},
+    "abstention_accuracy_unanswerable_judge": 1.0,
+    "abstention_rate_unanswerable_rule": 1.0,
+    "judge_vs_rule_agreement": 1.0
+  },
+  "rows": [
+    {
+      "qid": "q0001",
+      "type": "price",
+      "question": "Tabule no Tenda Nobre sai por quanto?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 21,70",
+      "answer": "O Tabule no Tenda Nobre custa **R$ 21,70** [2].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa R$ 21,70, exatamente o valor do gabarito, sem contradições.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Tabule no Tenda Nobre custa R$ 21,70.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r070-c00",
+        "r070-c01",
+        "r102-c01",
+        "r038-c01",
+        "r078-c01"
+      ]
+    },
+    {
+      "qid": "q0003",
+      "type": "price",
+      "question": "Quero saber o valor do prato Pão de Alho do Nonna Família.",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 15,20",
+      "answer": "O Pão de Alho do Nonna Família custa R$ 15,20 [1]. Ele é um pão italiano com manteiga de alho e ervas, opção vegetariana [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa que o Pão de Alho custa R$ 15,20, valor idêntico ao do gabarito, e os detalhes adicionais não o contradizem.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Pão de Alho do Nonna Família custa R$ 15,20.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Pão de Alho do Nonna Família é um pão italiano com manteiga de alho e ervas.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Pão de Alho do Nonna Família é uma opção vegetariana.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r135-c00",
+        "r135-c02",
+        "r135-c01",
+        "r007-c00",
+        "r143-c00"
+      ]
+    },
+    {
+      "qid": "q0005",
+      "type": "price",
+      "question": "Quanto custa Shawarma de Frango no Oásis da Vila?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 30,20",
+      "answer": "O Shawarma de Frango custa **R$ 30,20** no Oásis da Vila [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa o preço de R$ 30,20 para o Shawarma de Frango no Oásis da Vila, igual ao gabarito, sem contradição.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Shawarma de Frango custa R$ 30,20 no Oásis da Vila.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r030-c01",
+        "r030-c00",
+        "r126-c01",
+        "r046-c01",
+        "r078-c01"
+      ]
+    },
+    {
+      "qid": "q0007",
+      "type": "ingredients",
+      "question": "Quais ingredientes tem Refrigerante Lata 350ml no Forno da Vila?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "guaraná, cola ou limão",
+      "answer": "No cardápio do Forno da Vila, o Refrigerante Lata 350ml (R$ 5,60) vem em três sabores: guaraná, cola ou limão [1]. Ele é indicado como opção vegana [1]. O contexto não traz outros ingredientes além dos sabores.",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta contém os sabores do gabarito (guaraná, cola ou limão) e não os contradiz; os detalhes adicionais, como o preço e a indicação vegana, não conflitam com o gabarito.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Forno da Vila tem o Refrigerante Lata 350ml no cardápio.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Refrigerante Lata 350ml do Forno da Vila custa R$ 5,60.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Refrigerante Lata 350ml do Forno da Vila vem em três sabores: guaraná, cola ou limão.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Refrigerante Lata 350ml do Forno da Vila é indicado como opção vegana.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O contexto não traz outros ingredientes do Refrigerante Lata 350ml além dos sabores.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r080-c00",
+        "r080-c01",
+        "r032-c00",
+        "r072-c01",
+        "r000-c00"
+      ]
+    },
+    {
+      "qid": "q0009",
+      "type": "discovery",
+      "question": "Estou em Cidade Jardim, Bauru e quero comida japonesa vegetariana. O que tem?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Restaurantes: Kinoko Fresh",
+      "answer": "No Kinoko Fresh, em Cidade Jardim, Bauru, há estas opções japonesas vegetarianas:\n\n- **Missoshiru** (R$ 12,30): sopa de missô com tofu e cebolinha. Opções: vegano, vegetariano. [1]\n- **Yakisoba de Legumes** (R$ 37,50): macarrão oriental salteado com brócolis, cenoura e repolho. Opções: vegano, vegetariano. [1]\n- **Mochi de Morango** (R$ 21,60): bolinho de arroz recheado com sorvete de morango. Opções: veg",
+      "abstained": false,
+      "retrieval_recall": 0.75,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas o Kinoko Fresh, que é o único restaurante do gabarito, e não inclui nenhum item fora dele; os pratos listados são do cardápio desse restaurante.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Kinoko Fresh fica em Cidade Jardim, Bauru.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Kinoko Fresh é um restaurante de culinária japonesa.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Kinoko Fresh oferece Missoshiru por R$ 12,30.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Missoshiru é uma sopa de missô com tofu e cebolinha.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Missoshiru tem opções vegano e vegetariano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Kinoko Fresh oferece Yakisoba de Legumes por R$ 37,50.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Yakisoba de Legumes é macarrão oriental salteado com brócolis, cenoura e repolho.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Yakisoba de Legumes tem opções vegano e vegetariano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Kinoko Fresh oferece Mochi de Morango por R$ 21,60.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Mochi de Morango é um bolinho de arroz recheado com sorvete de morango.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Mochi de Morango tem opção vegetariano.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r041-c00",
+        "r017-c00",
+        "r015-c00",
+        "r064-c00",
+        "r050-c00"
+      ]
+    },
+    {
+      "qid": "q0011",
+      "type": "price",
+      "question": "Qual o preço de Salada Caesar Fit no Brasa Família?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 27,80",
+      "answer": "No Brasa Família, a Salada Caesar Fit custa R$ 27,80 [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa o preço R$ 27,80 para a Salada Caesar Fit no Brasa Família, coincidindo com o gabarito e sem contradições.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "No Brasa Família, a Salada Caesar Fit custa R$ 27,80.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r066-c01",
+        "r066-c02",
+        "r066-c00",
+        "r122-c01",
+        "r026-c02"
+      ]
+    },
+    {
+      "qid": "q0013",
+      "type": "ingredients",
+      "question": "O que vem no prato Falafel Prato do Cedro Fresh?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "6 bolinhos de grão-de-bico, salada e molho tahine",
+      "answer": "O Falafel Prato do Cedro Fresh (R$ 30,90) vem com 6 bolinhos de grão-de-bico, salada e molho tahine [1]. Ele tem as opções vegano, vegetariano e sem lactose [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta inclui os mesmos itens do gabarito (6 bolinhos de grão-de-bico, salada e molho tahine) e não o contradiz; o preço e as opções dietéticas extras não conflitam com o gabarito.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Falafel Prato do Cedro Fresh custa R$ 30,90.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh vem com 6 bolinhos de grão-de-bico.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh vem com salada.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh vem com molho tahine.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh tem a opção vegano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh tem a opção vegetariano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Falafel Prato do Cedro Fresh tem a opção sem lactose.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r054-c00",
+        "r054-c01",
+        "r014-c00",
+        "r094-c00",
+        "r118-c01"
+      ]
+    },
+    {
+      "qid": "q0015",
+      "type": "dietary",
+      "question": "O Brasa Família tem opção picante?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Burger Bacon Picante",
+      "answer": "Sim. O Brasa Família tem o **Burger Bacon Picante** (R$ 48,20), com blend 160g, bacon crocante, jalapeño e cheddar, marcado com a opção picante [1][3].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas o Burger Bacon Picante, que consta no gabarito, e não menciona nenhum item fora dele.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Brasa Família tem o Burger Bacon Picante.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Burger Bacon Picante do Brasa Família custa R$ 48,20.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Burger Bacon Picante do Brasa Família tem blend 160g, bacon crocante, jalapeño e cheddar.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Burger Bacon Picante está marcado com a opção picante.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r066-c00",
+        "r066-c02",
+        "r066-c01",
+        "r122-c00",
+        "r138-c02"
+      ]
+    },
+    {
+      "qid": "q0017",
+      "type": "unanswerable",
+      "question": "O Pasta Família tem estacionamento próprio?",
+      "answerable": false,
+      "answer_mode": "abstain",
+      "reference": "(abster-se: informação inexistente)",
+      "answer": "Não encontrei essa informação nos cardápios.",
+      "abstained": true,
+      "retrieval_recall": null,
+      "correct": true,
+      "correct_reason": "O sistema disse que não encontrou a informação nos cardápios, que é o comportamento esperado de abstenção, sem inventar dados sobre estacionamento.",
+      "faithfulness": null,
+      "claims": [],
+      "failure": null,
+      "context_chunk_ids": [
+        "r039-c00",
+        "r039-c01",
+        "r071-c02",
+        "r045-c00",
+        "r117-c00"
+      ]
+    },
+    {
+      "qid": "q0019",
+      "type": "discovery",
+      "question": "Tem alguma opção vegetariana de comida brasileira no bairro Vila Nova, Campinas?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Restaurantes: Sabor da Roça Central",
+      "answer": "Sim. No **Sabor da Roça Central** (Vila Nova, Campinas), o **Prato Vegano de Lentilha** (R$ 22,50) é indicado como vegetariano. Ele leva lentilha, arroz, legumes assados e farofa de castanhas [1].",
+      "abstained": false,
+      "retrieval_recall": 0.5,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas o restaurante Sabor da Roça Central, que consta no gabarito, e não inclui nenhum item fora dele.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Sabor da Roça Central fica no bairro Vila Nova, em Campinas.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Sabor da Roça Central oferece o Prato Vegano de Lentilha.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Prato Vegano de Lentilha do Sabor da Roça Central custa R$ 22,50.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Prato Vegano de Lentilha é indicado como vegetariano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Prato Vegano de Lentilha leva lentilha, arroz, legumes assados e farofa de castanhas.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r067-c00",
+        "r019-c00",
+        "r147-c00",
+        "r027-c00",
+        "r043-c00"
+      ]
+    },
+    {
+      "qid": "q0021",
+      "type": "ingredients",
+      "question": "Quais ingredientes tem Onion Rings no Smash Nobre?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "anéis de cebola empanados e fritos",
+      "answer": "No Smash Nobre, o Onion Rings (R$ 20,00) é descrito como \"anéis de cebola empanados e fritos\" [1]. O cardápio não lista outros ingredientes para esse prato.",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta contém a descrição do gabarito (\"anéis de cebola empanados e fritos\") e não a contradiz; o preço citado (R$ 20,00) não é contestado pelo gabarito.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "No Smash Nobre, o Onion Rings custa R$ 20,00.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "No Smash Nobre, o Onion Rings é descrito como \"anéis de cebola empanados e fritos\".",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O cardápio do Smash Nobre não lista outros ingredientes para o Onion Rings além dos anéis de cebola empanados e fritos.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r114-c00",
+        "r114-c01",
+        "r066-c02",
+        "r050-c00",
+        "r018-c00"
+      ]
+    },
+    {
+      "qid": "q0023",
+      "type": "price",
+      "question": "Quanto custa Bowl de Quinoa e Grão-de-Bico no Raiz Gourmet?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 39,40",
+      "answer": "Bowl de Quinoa e Grão-de-Bico no Raiz Gourmet custa R$ 39,40 [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa o preço de R$ 39,40, que coincide exatamente com o gabarito e não o contradiz.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Bowl de Quinoa e Grão-de-Bico é vendido no Raiz Gourmet.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Bowl de Quinoa e Grão-de-Bico no Raiz Gourmet custa R$ 39,40.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r108-c00",
+        "r108-c01",
+        "r092-c02",
+        "r036-c02",
+        "r092-c00"
+      ]
+    },
+    {
+      "qid": "q0025",
+      "type": "price",
+      "question": "Quero saber o valor do prato Pizza de Frango com Catupiry do Cantina do Zé.",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 51,60",
+      "answer": "O prato **Pizza de Frango com Catupiry** do Cantina do Zé custa **R$ 51,60** [1][2].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa que a Pizza de Frango com Catupiry do Cantina do Zé custa R$ 51,60, valor idêntico ao do gabarito e sem contradição.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Cantina do Zé oferece o prato Pizza de Frango com Catupiry.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A Pizza de Frango com Catupiry do Cantina do Zé custa R$ 51,60.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r088-c01",
+        "r088-c00",
+        "r000-c01",
+        "r104-c02",
+        "r096-c00"
+      ]
+    },
+    {
+      "qid": "q0027",
+      "type": "price",
+      "question": "Qual o preço de Tabule no Tenda Nobre?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 21,70",
+      "answer": "No Tenda Nobre, o Tabule custa **R$ 21,70** [2].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa que o Tabule custa R$ 21,70 no Tenda Nobre, o que coincide exatamente com o gabarito, sem contradições.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "No Tenda Nobre, o Tabule custa R$ 21,70.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r070-c00",
+        "r070-c01",
+        "r102-c01",
+        "r078-c01",
+        "r038-c01"
+      ]
+    },
+    {
+      "qid": "q0029",
+      "type": "price",
+      "question": "Quero saber o valor do prato Chá de Hortelã do Cedro Premium.",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 8,40",
+      "answer": "O Chá de Hortelã do Cedro Premium custa **R$ 8,40** [1]. É um chá quente de hortelã fresca, com opções vegano, sem glúten e sem lactose [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa que o Chá de Hortelã do Cedro Premium custa R$ 8,40, valor idêntico ao do gabarito, e os detalhes adicionais não o contradizem.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Chá de Hortelã do Cedro Premium custa R$ 8,40.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Chá de Hortelã do Cedro Premium é um chá quente de hortelã fresca.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Chá de Hortelã do Cedro Premium tem a opção vegano.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Chá de Hortelã do Cedro Premium tem a opção sem glúten.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Chá de Hortelã do Cedro Premium tem a opção sem lactose.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r046-c00",
+        "r046-c01",
+        "r014-c00",
+        "r094-c00",
+        "r118-c00"
+      ]
+    },
+    {
+      "qid": "q0031",
+      "type": "unanswerable",
+      "question": "Quanto custa Água de Coco 300ml no Marmita Nobre?",
+      "answerable": false,
+      "answer_mode": "abstain",
+      "reference": "(abster-se: informação inexistente)",
+      "answer": "Não encontrei essa informação nos cardápios.",
+      "abstained": true,
+      "retrieval_recall": null,
+      "correct": true,
+      "correct_reason": "O sistema se absteve corretamente ao dizer que não encontrou a informação nos cardápios, sem inventar um preço para a Água de Coco 300ml.",
+      "faithfulness": null,
+      "claims": [],
+      "failure": null,
+      "context_chunk_ids": [
+        "r107-c01",
+        "r107-c00",
+        "r013-c02",
+        "r005-c00",
+        "r077-c00"
+      ]
+    },
+    {
+      "qid": "q0033",
+      "type": "dietary",
+      "question": "O Cantina Express tem opção picante?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Penne Arrabbiata",
+      "answer": "Sim. No Cantina Express, o **Penne Arrabbiata** (R$ 44,90) é classificado como picante. É um penne com molho de tomate e pimenta calabresa [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas o Penne Arrabbiata, que consta no gabarito, e não inclui nenhum item fora dele.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Cantina Express tem o Penne Arrabbiata no cardápio.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Penne Arrabbiata custa R$ 44,90.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Penne Arrabbiata é classificado como picante.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Penne Arrabbiata é um penne com molho de tomate e pimenta calabresa.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r127-c00",
+        "r127-c01",
+        "r104-c00",
+        "r040-c00",
+        "r096-c00"
+      ]
+    },
+    {
+      "qid": "q0035",
+      "type": "price",
+      "question": "Qual o preço de Falafel Prato no Oásis Brasil?",
+      "answerable": true,
+      "answer_mode": "exact",
+      "reference": "R$ 28,20",
+      "answer": "Falafel Prato no Oásis Brasil custa R$ 28,20 [1].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta informa o preço de R$ 28,20 para Falafel Prato no Oásis Brasil, igual ao gabarito, sem contradições.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "Falafel Prato no Oásis Brasil custa R$ 28,20.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r126-c00",
+        "r126-c01",
+        "r062-c00",
+        "r030-c00",
+        "r030-c01"
+      ]
+    },
+    {
+      "qid": "q0037",
+      "type": "dietary",
+      "question": "O Raiz da Vila tem opção picante?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Curry de Legumes com Coco",
+      "answer": "Sim. No **Raiz da Vila**, o **Curry de Legumes com Coco** (R$ 34,90) é indicado como picante. Ele vem com legumes ao curry em leite de coco e arroz basmati [3].",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas o Curry de Legumes com Coco, que está no gabarito, e não inclui nenhum item fora dele.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Raiz da Vila tem o Curry de Legumes com Coco no cardápio.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Curry de Legumes com Coco do Raiz da Vila custa R$ 34,90.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Curry de Legumes com Coco do Raiz da Vila é indicado como picante.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Curry de Legumes com Coco vem com legumes ao curry em leite de coco.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Curry de Legumes com Coco vem com arroz basmati.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r060-c02",
+        "r060-c00",
+        "r060-c01",
+        "r052-c00",
+        "r092-c00"
+      ]
+    },
+    {
+      "qid": "q0039",
+      "type": "dietary",
+      "question": "O Tokyo Express tem opção vegana?",
+      "answerable": true,
+      "answer_mode": "list",
+      "reference": "Missoshiru; Yakisoba de Legumes",
+      "answer": "Sim. No **Tokyo Express**, os pratos com opção vegana são:\n\n- **Missoshiru** (R$ 15,80): sopa de missô com tofu e cebolinha [1]\n- **Yakisoba de Legumes** (R$ 48,70): macarrão oriental salteado com brócolis, cenoura e repolho [1]",
+      "abstained": false,
+      "retrieval_recall": 1.0,
+      "correct": true,
+      "correct_reason": "A resposta cita apenas Missoshiru e Yakisoba de Legumes, ambos presentes no gabarito, sem itens fora dele, e cita ao menos um item do gabarito.",
+      "faithfulness": 1.0,
+      "claims": [
+        {
+          "claim": "O Tokyo Express tem pratos com opção vegana.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Missoshiru do Tokyo Express tem opção vegana.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Missoshiru do Tokyo Express custa R$ 15,80.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Missoshiru é uma sopa de missô com tofu e cebolinha.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Yakisoba de Legumes do Tokyo Express tem opção vegana.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Yakisoba de Legumes do Tokyo Express custa R$ 48,70.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O Yakisoba de Legumes é um macarrão oriental salteado com brócolis, cenoura e repolho.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Missoshiru e Yakisoba de Legumes são os únicos pratos com opção vegana no Tokyo Express.",
+          "verdict": "supported"
+        }
+      ],
+      "failure": null,
+      "context_chunk_ids": [
+        "r009-c00",
+        "r009-c01",
+        "r049-c00",
+        "r137-c00",
+        "r033-c00"
+      ]
+    }
+  ]
+}

@@ -4,6 +4,11 @@ import re
 import time
 from functools import lru_cache
 
+# Algumas versões do SDK / alguns modelos não aceitam `temperature`. O SDK pode recusar no cliente
+# (TypeError: unexpected keyword argument) ou a API pode recusar (BadRequestError). Nos dois casos
+# descobrimos uma vez, lembramos, e seguimos sem o parâmetro (vale para todas as threads do e2e).
+_TEMPERATURE_SUPPORTED = True
+
 
 @lru_cache(maxsize=1)
 def _client():
@@ -11,29 +16,35 @@ def _client():
     return anthropic.Anthropic()
 
 
+def _is_temperature_error(exc: Exception) -> bool:
+    return "temperature" in str(exc).lower()
+
+
 def complete(model: str, system: str, user: str, max_tokens: int = 800,
              temperature: float = 0.0, retries: int = 3) -> str:
+    global _TEMPERATURE_SUPPORTED
     import anthropic
     client = _client()
-    kwargs = dict(model=model, max_tokens=max_tokens, system=system,
-                  messages=[{"role": "user", "content": user}])
-    use_temp = True
-    for attempt in range(retries):
+    last_exc = None
+    attempt = 0
+    while attempt < retries:
+        kwargs = dict(model=model, max_tokens=max_tokens, system=system,
+                      messages=[{"role": "user", "content": user}])
+        if _TEMPERATURE_SUPPORTED:
+            kwargs["temperature"] = temperature
         try:
-            if use_temp:
-                kwargs["temperature"] = temperature
-            else:
-                kwargs.pop("temperature", None)
             resp = client.messages.create(**kwargs)
             return "".join(b.text for b in resp.content if b.type == "text")
-        except anthropic.BadRequestError as e:
-            if "temperature" in str(e).lower() and use_temp:
-                use_temp = False        # alguns modelos não aceitam temperature
+        except (TypeError, anthropic.BadRequestError) as e:
+            if _TEMPERATURE_SUPPORTED and _is_temperature_error(e):
+                _TEMPERATURE_SUPPORTED = False  # refaz a chamada sem temperature, sem gastar tentativa
                 continue
             raise
-        except (anthropic.RateLimitError, anthropic.APIConnectionError, anthropic.InternalServerError):
+        except (anthropic.RateLimitError, anthropic.APIConnectionError, anthropic.InternalServerError) as e:
+            last_exc = e
             time.sleep(2 ** attempt)
-    raise RuntimeError("falha ao chamar a API após retries")
+            attempt += 1
+    raise RuntimeError(f"falha ao chamar a API após {retries} tentativas") from last_exc
 
 
 def parse_json(text: str) -> dict:
