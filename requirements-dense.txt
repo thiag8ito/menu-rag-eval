@@ -1,0 +1,2 @@
+# embeddings densos e rerankers (baixa modelos do HuggingFace; puxa PyTorch)
+sentence-transformers>=3.0
